@@ -1,0 +1,169 @@
+# Key-rate jobs of the paper, one job per line (arguments of scripts/run_job.jl). Run with
+#     scripts/run_batch.sh jobs/keyrates.txt N
+# Each job writes results/<jobid>.json, or results/curves/<jobid>.json where indicated. Most jobs take minutes on one
+# core. Those with the relaxations lean:2+B*B*E, lean:2s+B*B*E and lean:4 take one to four hours, and those with
+# lean:2+B*B*E+B*B*B about ten hours.
+
+# Table III and Fig. 3: the protocols of the main text at the honest and relaxed bounds G + dG (dG in the units of
+# the code: the paper's dG divided by the number of preparations n)
+prot=42 rel=lean:3 sweep=v
+prot=42 rel=lean:3 sweep=eta
+prot=42 rel=lean:3 dG=0.01 sweep=v
+prot=42 rel=lean:3 dG=0.01 sweep=eta
+prot=42 rel=lean:3 dG=0.02 sweep=v
+prot=42 rel=lean:3 dG=0.02 sweep=eta
+prot=42 rel=lean:3 dG=0.03 sweep=v
+prot=42 rel=lean:3 dG=0.03 sweep=eta
+prot=43 rel=lean:3 sweep=v
+prot=43 rel=lean:3 sweep=eta
+prot=43 rel=lean:3 dG=0.01 sweep=v
+prot=43 rel=lean:3 dG=0.01 sweep=eta
+prot=43 rel=lean:3 dG=0.02 sweep=v
+prot=43 rel=lean:3 dG=0.02 sweep=eta
+prot=43 rel=lean:3 dG=0.03 sweep=v
+prot=43 rel=lean:3 dG=0.03 sweep=eta
+prot=44 rel=lean:2+B*B*E sweep=v xmax=0.87
+prot=44 rel=lean:2+B*B*E sweep=eta xmax=0.81
+prot=44 rel=lean:2+B*B*E dG=0.01 sweep=v xmax=0.88
+prot=44 rel=lean:2+B*B*E dG=0.01 sweep=eta xmax=0.82
+prot=44 rel=lean:2+B*B*E dG=0.02 sweep=v xmax=0.89
+prot=44 rel=lean:2+B*B*E dG=0.02 sweep=eta xmax=0.84
+prot=44 rel=lean:2+B*B*E dG=0.03 sweep=v xmax=0.90
+prot=44 rel=lean:2+B*B*E dG=0.03 sweep=eta xmax=0.85
+prot=6sym rel=lean:2s+B*B*E sweep=v xmax=0.89
+prot=6sym rel=lean:2s+B*B*E sweep=eta xmax=0.80
+prot=6sym rel=lean:2s+B*B*E dG=0.01 sweep=v xmax=0.90
+prot=6sym rel=lean:2s+B*B*E dG=0.01 sweep=eta xmax=0.83
+prot=6sym rel=lean:2s+B*B*E dG=0.02 sweep=v xmax=0.92
+prot=6sym rel=lean:2s+B*B*E dG=0.02 sweep=eta xmax=0.86
+prot=6sym rel=lean:2s+B*B*E dG=0.03 sweep=v xmax=0.93
+prot=6sym rel=lean:2s+B*B*E dG=0.03 sweep=eta xmax=0.88
+
+# Fig. 2: full curves of (4,4) and (6,3) at the relaxation of Table III, in steps of 0.02
+prot=44 rel=lean:2+B*B*E sweep=v xmin=0.88 step=0.02 out=results/curves
+prot=44 rel=lean:2+B*B*E sweep=eta xmin=0.82 step=0.02 out=results/curves
+prot=6sym rel=lean:2s+B*B*E sweep=v xmin=0.90 step=0.02 out=results/curves
+prot=6sym rel=lean:2s+B*B*E sweep=eta xmin=0.82 step=0.02 out=results/curves
+
+# App. E and Table V: (4,4) and (6,3) with fewer words
+prot=44 rel=lean:2 sweep=v
+prot=44 rel=lean:2 sweep=eta
+prot=6sym rel=lean:2s sweep=v
+prot=6sym rel=lean:2s sweep=eta
+prot=6sym rel=lean:2 sweep=v xmax=0.89
+prot=6sym rel=lean:2 sweep=eta xmax=0.80
+
+# App. E and Sec. VI.C: convergence checks with longer words
+prot=44 rel=lean:2+B*B*E+B*B*B sweep=v xmax=0.86
+prot=44 rel=lean:2+B*B*E+B*B*B sweep=eta xmax=0.80
+prot=43 rel=lean:4 sweep=v
+prot=43 rel=lean:4 sweep=eta
+prot=43 rel=lean:4 dG=0.02 sweep=v
+prot=43 rel=lean:4 dG=source sweep=v
+
+# Table IV: successive relaxations of (4,3), and of the (4,2) protocol of earlier versions (the last step, lean:3, is
+# in the first group)
+prot=42 rel=lean:1+B*E sweep=v grid=uniform10
+prot=42 rel=lean:1+B*E sweep=v
+prot=42 rel=lean:2 sweep=v
+prot=42 rel=lean:1+B*E sweep=eta grid=uniform10
+prot=42 rel=lean:1+B*E sweep=eta
+prot=42 rel=lean:2 sweep=eta
+prot=43 rel=lean:1+B*E sweep=v grid=uniform10
+prot=43 rel=lean:1+B*E sweep=v
+prot=43 rel=lean:2 sweep=v
+prot=43 rel=lean:1+B*E sweep=eta grid=uniform10
+prot=43 rel=lean:1+B*E sweep=eta
+prot=43 rel=lean:2 sweep=eta
+
+# Sec. VI.B and Table V: further protocols at the honest G
+prot=3st_ZBB rel=lean:3 sweep=v
+prot=3st_ZBB rel=lean:3 sweep=eta
+# Table III: (3,3) at the paper's dG = 0.04, 0.08, 0.12, i.e. dG/3 in the units of the code
+prot=3st_ZBB rel=lean:3 dG=0.013333 sweep=v
+prot=3st_ZBB rel=lean:3 dG=0.013333 sweep=eta
+prot=3st_ZBB rel=lean:3 dG=0.026667 sweep=v
+prot=3st_ZBB rel=lean:3 dG=0.026667 sweep=eta
+prot=3st_ZBB rel=lean:3 dG=0.04 sweep=v
+prot=3st_ZBB rel=lean:3 dG=0.04 sweep=eta
+prot=63 rel=lean:2s+B*B*E sweep=v xmax=0.91
+prot=63 rel=lean:2s+B*B*E sweep=eta xmax=0.83
+prot=63 rel=lean:2s sweep=v
+prot=63 rel=lean:2s sweep=eta
+prot=BB84+1 rel=lean:2+B*B*E sweep=v
+prot=BB84+1 rel=lean:2+B*B*E sweep=eta
+prot=3st_ZB rel=lean:3 sweep=v
+prot=3st_ZB rel=lean:3 sweep=eta
+prot=3st_ZXB rel=lean:3 sweep=v
+prot=3st_ZXB rel=lean:3 sweep=eta
+prot=3st_ZX rel=lean:3 sweep=v
+prot=3st_ZX rel=lean:3 sweep=eta
+
+# App. F: tilted test measurements, cos φ Z ± sin φ X for (4,3), and cos φ Z + sin φ X for the (4,2) protocol of earlier
+# versions (φ = 45° is in the first group)
+prot=42@22.5 rel=lean:3 sweep=v
+prot=42@30 rel=lean:3 sweep=v
+prot=42@37.5 rel=lean:3 sweep=v
+prot=42@52.5 rel=lean:3 sweep=v
+prot=42@60 rel=lean:3 sweep=v
+prot=42@67.5 rel=lean:3 sweep=v
+prot=43@30 rel=lean:3 sweep=v
+prot=43@37.5 rel=lean:3 sweep=v
+prot=43@52.5 rel=lean:3 sweep=v
+prot=43@60 rel=lean:3 sweep=v
+
+# Sec. VI.A and App. F: G set to the guessing probability of the depolarised source
+prot=42 rel=lean:3 dG=source sweep=v
+prot=43 rel=lean:3 dG=source sweep=v
+prot=44 rel=lean:2 dG=source sweep=v
+prot=63 rel=lean:2s dG=source sweep=v
+
+# Sec. VI.B, figure of the thresholds versus dG: thresholds at further values of dG, with the relaxations of
+# Table III (the values 0.00-0.03 are in the first group). The largest dG with key at the ideal point is in
+# results/dG/ (jobs/dG_scan.txt).
+prot=42 rel=lean:3 dG=0.005 sweep=v
+prot=42 rel=lean:3 dG=0.005 sweep=eta
+prot=42 rel=lean:3 dG=0.04 sweep=v
+prot=42 rel=lean:3 dG=0.04 sweep=eta
+prot=42 rel=lean:3 dG=0.05 sweep=v
+prot=42 rel=lean:3 dG=0.05 sweep=eta
+prot=42 rel=lean:3 dG=0.06 sweep=v
+prot=42 rel=lean:3 dG=0.06 sweep=eta
+prot=42 rel=lean:3 dG=0.07 sweep=v
+prot=42 rel=lean:3 dG=0.07 sweep=eta
+prot=42 rel=lean:3 dG=0.08 sweep=v
+prot=42 rel=lean:3 dG=0.08 sweep=eta
+prot=43 rel=lean:3 dG=0.005 sweep=v
+prot=43 rel=lean:3 dG=0.005 sweep=eta
+prot=43 rel=lean:3 dG=0.04 sweep=v
+prot=43 rel=lean:3 dG=0.04 sweep=eta
+prot=43 rel=lean:3 dG=0.05 sweep=v
+prot=43 rel=lean:3 dG=0.05 sweep=eta
+prot=43 rel=lean:3 dG=0.06 sweep=v
+prot=43 rel=lean:3 dG=0.06 sweep=eta
+prot=43 rel=lean:3 dG=0.08 sweep=v
+prot=43 rel=lean:3 dG=0.08 sweep=eta
+prot=43 rel=lean:3 dG=0.10 sweep=v
+prot=43 rel=lean:3 dG=0.10 sweep=eta
+prot=43 rel=lean:3 dG=0.12 sweep=v
+prot=43 rel=lean:3 dG=0.12 sweep=eta
+prot=44 rel=lean:2+B*B*E dG=0.005 sweep=v xmax=0.87
+prot=44 rel=lean:2+B*B*E dG=0.005 sweep=eta xmax=0.81
+prot=44 rel=lean:2+B*B*E dG=0.05 sweep=v step=0.02
+prot=44 rel=lean:2+B*B*E dG=0.05 sweep=eta step=0.02
+prot=44 rel=lean:2+B*B*E dG=0.08 sweep=v step=0.02
+prot=44 rel=lean:2+B*B*E dG=0.08 sweep=eta step=0.02
+prot=44 rel=lean:2+B*B*E dG=0.11 sweep=v step=0.02
+prot=44 rel=lean:2+B*B*E dG=0.11 sweep=eta step=0.02
+prot=44 rel=lean:2+B*B*E dG=0.14 sweep=v step=0.02
+prot=44 rel=lean:2+B*B*E dG=0.14 sweep=eta step=0.02
+prot=44 rel=lean:2+B*B*E dG=0.17 sweep=v step=0.02
+prot=44 rel=lean:2+B*B*E dG=0.17 sweep=eta step=0.02
+prot=6sym rel=lean:2s+B*B*E dG=0.005 sweep=v xmax=0.89
+prot=6sym rel=lean:2s+B*B*E dG=0.005 sweep=eta xmax=0.80
+prot=6sym rel=lean:2s+B*B*E dG=0.05 sweep=v step=0.02
+prot=6sym rel=lean:2s+B*B*E dG=0.05 sweep=eta step=0.02
+prot=6sym rel=lean:2s+B*B*E dG=0.08 sweep=v step=0.02
+prot=6sym rel=lean:2s+B*B*E dG=0.08 sweep=eta step=0.02
+prot=6sym rel=lean:2s+B*B*E dG=0.11 sweep=v step=0.02
+prot=6sym rel=lean:2s+B*B*E dG=0.11 sweep=eta step=0.02

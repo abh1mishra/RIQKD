@@ -1,0 +1,6 @@
+# Largest dG with a positive rate at the ideal point v = eta = 1 (Sec. VI.B and App. F), one scan per line (arguments of
+# scripts/dG_scan.jl, run as: julia --project=. scripts/dG_scan.jl <line>). Output: results/dG/.
+prot=42 rel=lean:3
+prot=43 rel=lean:3
+prot=44 rel=lean:2+B*B*E
+prot=6sym rel=lean:2s+B*B*E

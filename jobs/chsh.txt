@@ -1,0 +1,39 @@
+# CHSH scans of the paper (Sec. VI.D and App. F), one scan per line (arguments of scripts/chsh_scan.jl). Run with
+#     scripts/run_chsh_batch.sh jobs/chsh.txt N
+# Each scan writes results/chsh/chsh__<rel>__G<G>__<grid>.json. A scan takes at most about half an hour on one core.
+
+# Fig. 4: words of length ≤ 4, 26-node partition
+G=0.30
+G=0.35
+G=0.40
+G=0.45
+G=0.48
+G=0.50
+G=0.52
+G=0.55
+G=0.60
+G=0.65
+G=0.70
+G=0.75
+
+# convergence: 120-node partition
+G=0.45 grid=fine120 Smin=1.5 Smax=2.7 step=0.05
+G=0.50 grid=fine120 Smin=1.9 Smax=2.85 step=0.05
+G=0.55 grid=fine120 Smin=2.3 Smax=2.9 step=0.05
+G=0.60 grid=fine120 Smin=2.5 Smax=3.05 step=0.05
+
+# convergence: words of length ≤ 3
+G=0.40 rel=lean:3
+G=0.50 rel=lean:3
+G=0.60 rel=lean:3
+
+# convergence: words of length ≤ 5
+G=0.40 rel=lean:5 Smin=1.5 Smax=1.92
+G=0.45 rel=lean:5 Smin=1.5 Smax=2.7
+G=0.50 rel=lean:5 Smin=1.8 Smax=2.9
+G=0.52 rel=lean:5 Smin=2.2 Smax=2.86
+G=0.55 rel=lean:5 Smin=2.3 Smax=2.94
+G=0.60 rel=lean:5 Smin=2.5 Smax=3.06
+
+# along the depolarised source, S = 2√2 v and G = (1+v)/4 (Sec. VI.D)
+path=source vmin=0.60 vmax=0.99 vstep=0.01
