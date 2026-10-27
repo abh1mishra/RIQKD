@@ -11,7 +11,7 @@ assumption is that the probability of guessing Alice's input from everything tha
 most G. It also computes the entropy certified by a CHSH-type value
 alone.
 
-The bound on the conditional entropy H(A|E) is computed in three steps:
+The bound on the conditional entropy H(A|E) is computed using three ingreidents:
 - the Koßmann–Schwonnek relative-entropy bound on a fixed partition of [0, 1] (paper, Sec. V.A and App. C);
 - one semidefinite program per node of the partition, from the one-factor moment relaxation of Sec. V.B;
 - the dual of each program, solved with MOSEK.
@@ -19,9 +19,7 @@ The bound on the conditional entropy H(A|E) is computed in three steps:
 The programs are generated with [PCPOP.jl](https://github.com/abh1mishra/PCPOP.jl). The rate per key round is
 K = H(A|E) − H(A|B). Thresholds are the zero crossings of K, located by bisection.
 
-The package covers the key-rate results of Sec. VI and Apps. E–F, and the CHSH relation of Sec. VI.D. It does not
-include the linear programs of Sec. III and App. A (Table II), or the device-independent comparison of
-Sec. VI.C. Section and table numbers refer to the arXiv version of the paper.
+The package covers the key-rate results of Sec. VI and Apps. E–F, and the CHSH relation of Sec. VI.D.
 
 **Units of G.** The code works with the guessing probability P_g = G/n, where n is the number of preparations,
 and its `G`, `dG` and `G_honest` are the paper's G, δG and G_hon divided by n. The honest value is `G` = 2/n for
@@ -46,7 +44,7 @@ Mosek.jl is built, it downloads the MOSEK 11.2 binaries. To use an existing MOSE
 
 All commands are run from this directory. By default the scripts write to `results/`, which holds the results of
 the paper. The examples below therefore write to a new directory, `rerun/`. Without it, `run_job.jl` would
-overwrite a shipped result, and the batch scripts would skip every job, since all shipped jobs are done.
+overwrite the existing results, and the batch scripts would skip every job, since all shipped jobs are done.
 
 ```bash
 # one key-rate job: a curve, and the thresholds of the von Neumann and min-entropy rates
@@ -236,26 +234,3 @@ such.
 - **Reproducibility.** In our tests, re-running a job on another machine gave the same thresholds, and point values
   that agree to about 10⁻⁸. The exceptions are ill-conditioned programs, for which MOSEK reports slow progress: at the ideal
   point, and for the small word set `lean:1+B*E` near it, values can differ by up to about 10⁻⁴.
-
-## Provenance of the results
-
-The results were computed on 28–29 September 2026, those of Fig. 3 on 30 September–1 October 2026, and the files
-at `dG0.006667`, `dG0.013333`, `dG0.026667` and `dG0.04` (the columns of Table III for (6,3) and (3,3)) on 7–8 October
-2026, with:
-- Julia 1.11.7;
-- MOSEK 11.2.4;
-- PCPOP.jl at commit `813b644`;
-- a preliminary version of this code for the results of 28–29 September, and the present version for the later
-  ones (the files at `dG0.005`, at `dG0.04`–`dG0.17` and at the fractional values of `dG`, and `results/dG/`).
-
-That version read the coefficients of the entropy bound and the Shannon entropies from `utils.jl` of A. Mishra's
-[SDIQKD](https://github.com/abh1mishra/SDIQKD) repository, at commit `a5fa6f7`. `src/utils.jl` computes them with
-the same expressions, and the values are bit-for-bit identical.
-
-The metadata of the result files come from that version:
-- the key-rate files record `mosek`, `pcpop_commit` and `sdiqkd_commit`, whereas files written by the present
-  version record `versions`;
-- the CHSH files have no version fields.
-
-The protocol descriptions and the label of the uniform partition were updated to the names used here. The numerical
-content of the files is unchanged.
